@@ -36,15 +36,32 @@ class ProductionWorker(Employee):
     def setHrPay(self, hrPay):
         self.hrPay = hrPay
 
+class ShiftSupervisor(Employee):
+    def __init__(self, name="", empNum=0, annSalary=0.0, annProdBonus=0.0):
+        super().__init__(name, empNum)
+        self.annSalary = annSalary
+        self.annProdBonus = annProdBonus
+
+    def getAnnSalary(self):
+        return self.annSalary
+    def getAnnProdBonus(self):
+        return self.annProdBonus
+
+    def setAnnSalary(self, annSalary):
+        self.annSalary = annSalary
+    def setAnnProdBonus(self, annProdBonus):
+        self.annProdBonus = annProdBonus
+
+
+print("Employee")
 worker = ProductionWorker()
 worker.setName(input("What is your name? "))
 worker.setEmpNum(int(input("What is your employee number? ")))
-worker.setShiftNum(int(input("What is your shift number? ")))
 #found =  True
-while worker.setShiftNum(int(input("What is your shift number? "))) == False:
-    worker.setShiftNum(int(input("What is your shift number? ")))
-else:
-    worker.setHrPay(float(input("What is your hourly pay rate? ")))
+while not worker.setShiftNum(int(input("What is your shift number? "))):
+    pass
+
+worker.setHrPay(float(input("What is your hourly pay rate? ")))
 
 
 print()
@@ -52,3 +69,18 @@ print("Employee Name: "+worker.getName())
 print("Employee Number: %d"%worker.getEmpNum())
 print("Employee Shift Number: %d"%worker.getShiftNum())
 print("Employee Hourly Pay Rate: %.2f"%worker.getHrPay())
+
+print()
+print("Shift Supervisor")
+worker = ShiftSupervisor()
+worker.setName(input("What is your name? "))
+worker.setEmpNum(int(input("What is your employee number? ")))
+worker.setAnnSalary(float(input("What is your annual salary? ")))
+worker.setAnnProdBonus(float(input("What is your annual production bonus? ")))
+
+print()
+print("Employee Name: "+worker.getName())
+print("Employee Number: %d"%worker.getEmpNum())
+print("Employee Shift Number: %.2f"%worker.getAnnSalary())
+print("Employee Hourly Pay Rate: %.2f"%worker.getAnnProdBonus())
+
